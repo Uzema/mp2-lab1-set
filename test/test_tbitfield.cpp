@@ -309,3 +309,183 @@ TEST(TBitField, bitfields_with_different_bits_are_not_equal)
 
   EXPECT_NE(bf1, bf2);
 }
+
+TEST(TBitField, test_33_elem)
+{
+    const int size = 70;
+    TBitField resbf(size), bf1(size);
+
+    bf1.SetBit(33);
+
+    resbf.SetBit(33);
+    //std::cout << resbf << std::endl;
+
+    EXPECT_EQ(bf1, resbf);
+}
+
+TEST(TBitField, test_bit_or_1)
+{
+    const int size = 5;
+    TBitField bf1(size);
+    TBitField bf2(size);
+    TBitField resbf(size);
+
+    bf1.SetBit(1);
+    bf2.SetBit(2);
+
+    bf1 = bf1 | bf2;
+
+    resbf.SetBit(1);
+    resbf.SetBit(2);
+
+    EXPECT_EQ(bf1, resbf);
+}
+
+TEST(TBitField, test_bit_or_2)
+{
+    const int size1 = 7;
+    const int size2 = 5;
+    TBitField bf1(size1);
+    TBitField bf2(size2);
+    TBitField resbf(size1);
+
+    bf1.SetBit(1);
+    bf1.SetBit(2);
+
+    bf2.SetBit(3);
+
+    bf1 = bf1 | bf2;
+
+    resbf.SetBit(1);
+    resbf.SetBit(2);
+    resbf.SetBit(3);
+
+    EXPECT_EQ(bf1, resbf);
+}
+
+TEST(TBitField, test_bit_or_3)
+{
+    const int size1 = 10;
+    const int size2 = 100;
+    TBitField bf1(size1);
+    TBitField bf2(size2);
+    TBitField resbf(size2);
+
+    bf1.SetBit(1);
+    bf1.SetBit(2);
+
+    bf2.SetBit(99);
+
+    bf1 = bf1 | bf2;
+
+    resbf.SetBit(1);
+    resbf.SetBit(2);
+    resbf.SetBit(99);
+
+    EXPECT_EQ(bf1, resbf);
+}
+
+TEST(TBitField, test_bit_or_4)
+{
+    const int size1 = 100;
+    const int size2 = 10;
+    TBitField bf1(size1);
+    TBitField bf2(size2);
+    TBitField resbf(size1);
+
+    bf1.SetBit(99);
+
+    bf2.SetBit(1);
+    bf2.SetBit(2);
+
+    bf1 = bf1 | bf2;
+
+    resbf.SetBit(1);
+    resbf.SetBit(2);
+    resbf.SetBit(99);
+
+    EXPECT_EQ(bf1, resbf);
+}
+
+TEST(TBitField, test_bit_and_1)
+{
+    const int size = 5;
+    TBitField bf1(size);
+    TBitField bf2(size);
+    TBitField resbf(size);
+
+    bf1.SetBit(1);
+    bf1.SetBit(2);
+
+    bf2.SetBit(2);
+
+    bf1 = bf1 & bf2;
+
+    resbf.SetBit(2);
+
+    EXPECT_EQ(bf1, resbf);
+}
+
+TEST(TBitField, test_bit_and_2)
+{
+    const int size1 = 7;
+    const int size2 = 5;
+    TBitField bf1(size1);
+    TBitField bf2(size2);
+    TBitField resbf(size1);
+
+    bf1.SetBit(1);
+    bf1.SetBit(2);
+    bf1.SetBit(6);
+
+    bf2.SetBit(2);
+
+    bf1 = bf1 & bf2;
+
+    resbf.SetBit(2);
+
+    EXPECT_EQ(bf1, resbf);
+}
+
+TEST(TBitField, test_bit_and_3)
+{
+    const int size1 = 10;
+    const int size2 = 100;
+    TBitField bf1(size1);
+    TBitField bf2(size2);
+    TBitField resbf(size2);
+
+    bf1.SetBit(2);
+
+    bf2.SetBit(1);
+    bf2.SetBit(2);
+    bf2.SetBit(99);
+
+    bf1 = bf1 & bf2;
+
+    resbf.SetBit(2);
+
+    EXPECT_EQ(bf1, resbf);
+}
+
+TEST(TBitField, test_bit_and_4)
+{
+    const int size1 = 100;
+    const int size2 = 10;
+    TBitField bf1(size1);
+    TBitField bf2(size2);
+    TBitField resbf(size1);
+
+    bf1.SetBit(1);
+    bf1.SetBit(2);
+    bf1.SetBit(99);
+
+    bf2.SetBit(2);
+
+    bf1 = bf1 & bf2;
+
+    resbf.SetBit(2);
+
+    EXPECT_EQ(bf1, resbf);
+}
+
